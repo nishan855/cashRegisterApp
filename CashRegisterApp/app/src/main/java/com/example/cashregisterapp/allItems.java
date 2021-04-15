@@ -40,18 +40,27 @@ public class allItems extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String item= et.getText().toString();
                         String price= prc.getText().toString();
+                        if(price.length()==0){
+                            price="0.00";
+                        }
                         double pr= Double.parseDouble(price);
                         double tax= 0;
+                        double taxable=0.0;
+                        double nontax=0.0;
                         double total=pr;
                         //calculating tax value
 
-                        if (pressed.equals("tax")||pressed.equals("beer")||pressed.equals("cig"))
+                        if (pressed.equals("tax")||pressed.equals("beer")||pressed.equals("cigg"))
                         {
                             tax= 0.0825 * pr;
                             total +=tax;
+                            taxable=pr;
+                        }
+                        else {
+                            nontax=pr;
                         }
 
-                        listener.applyTexts(item,price,tax,total);
+                        listener.applyTexts(item,price,tax,total,taxable,nontax);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -78,11 +87,7 @@ public class allItems extends AppCompatDialogFragment {
         }
     }
 
-    public  void onAttach(){
-
-    }
-
 public interface DialogListen {
-    void applyTexts(String item, String price, double tax, double total);
+    void applyTexts(String item, String price, double tax, double total,double taxable, double nontax);
 }
 }

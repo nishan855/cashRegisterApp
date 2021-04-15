@@ -10,6 +10,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -34,13 +37,11 @@ public class MainActivity extends AppCompatActivity implements allItems.DialogLi
     private Button clr;
     private Button cash;
     private RecyclerView recyclerView;
-    private TextView totSale;
-    private TextView totTaxx;
-    ItemAdapter it=null;
+    static TextView totSale;
+    static TextView totTaxx;
+    static ItemAdapter it=null;
 
-
-    ArrayList<OrderItems> items= new ArrayList<OrderItems>();
-
+    static ArrayList<OrderItems> items= new ArrayList<OrderItems>();
 
 
 
@@ -120,6 +121,47 @@ public class MainActivity extends AppCompatActivity implements allItems.DialogLi
             }
         });
 
+        cash.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                if(items.size()>0) {
+                    double thisTotal = getAllTotal();
+                    CashHandler ch = new CashHandler(thisTotal);
+                    ch.show(getSupportFragmentManager(), "Insert");
+
+
+                }
+
+            }
+        });
+
+
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menuitems, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.report1:
+                double tSale= CashHandler.total_nontaxable+CashHandler.total_tax+CashHandler.total_taxable;
+                String txs= String.format("%.2f",CashHandler.total_taxable);
+                String ntxs= String.format("%.2f",CashHandler.total_nontaxable);
+                String txx=String.format("%.2f",CashHandler.total_tax);
+                String ttl_sale = String.format("%.2f",tSale);
+                report rp= new report(ntxs,txs,txx,ttl_sale);
+                rp.show(getSupportFragmentManager(),"Insert");
+
+            case R.id.close:
+
+        }
+        return true;
     }
 
     public double getAllTotal(){
@@ -140,10 +182,14 @@ public class MainActivity extends AppCompatActivity implements allItems.DialogLi
         return totTax;
     }
 
-    @Override
-    public void applyTexts(String item, String price, double tax, double total) {
 
-        OrderItems oi= new OrderItems(item,price, tax,total);
+
+
+
+    @Override
+    public void applyTexts(String item, String price, double tax, double total,double taxable, double nontax) {
+
+        OrderItems oi= new OrderItems(item,price, tax,total, taxable, nontax);
         items.add(oi);
         it= new ItemAdapter(items);
         recyclerView.setHasFixedSize(true);
@@ -151,6 +197,9 @@ public class MainActivity extends AppCompatActivity implements allItems.DialogLi
         recyclerView.setAdapter(it);
         totSale.setText("Tax : $ "+String.format("%.2f",getAllTax()));
         totTaxx.setText("Total : $ "+String.format("%.2f",getAllTotal()));
+
     }
+
+
 
 }
