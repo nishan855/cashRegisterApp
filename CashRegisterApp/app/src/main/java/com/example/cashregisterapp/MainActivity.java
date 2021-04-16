@@ -136,6 +136,18 @@ public class MainActivity extends AppCompatActivity implements allItems.DialogLi
             }
         });
 
+        ref.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                    refund rf = new refund();
+                    rf.show(getSupportFragmentManager(), "Insert");
+
+
+            }
+        });
+
 
 
     }
@@ -149,16 +161,24 @@ public class MainActivity extends AppCompatActivity implements allItems.DialogLi
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.report1:
+            case R.id.report1: {
+                double tSale = CashHandler.total_nontaxable + CashHandler.total_tax + CashHandler.total_taxable;
+                String txs = String.format("%.2f", CashHandler.total_taxable);
+                String ntxs = String.format("%.2f", CashHandler.total_nontaxable);
+                String txx = String.format("%.2f", CashHandler.total_tax);
+                String ttl_sale = String.format("%.2f", tSale);
+                report rp = new report(ntxs, txs, txx, ttl_sale);
+                rp.show(getSupportFragmentManager(), "Insert");
+            }
+
+            case R.id.close:
                 double tSale= CashHandler.total_nontaxable+CashHandler.total_tax+CashHandler.total_taxable;
                 String txs= String.format("%.2f",CashHandler.total_taxable);
                 String ntxs= String.format("%.2f",CashHandler.total_nontaxable);
                 String txx=String.format("%.2f",CashHandler.total_tax);
                 String ttl_sale = String.format("%.2f",tSale);
-                report rp= new report(ntxs,txs,txx,ttl_sale);
-                rp.show(getSupportFragmentManager(),"Insert");
-
-            case R.id.close:
+                CloseShift cs= new CloseShift(ntxs,txs,txx,ttl_sale);
+                cs.show(getSupportFragmentManager(),"Insert");
 
         }
         return true;

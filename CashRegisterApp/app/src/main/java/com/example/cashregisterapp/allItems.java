@@ -1,7 +1,5 @@
 package com.example.cashregisterapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import android.app.AlertDialog;
@@ -11,14 +9,13 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class allItems extends AppCompatDialogFragment {
 
    private EditText et;
    private EditText prc;
+    private EditText qntt;
    private DialogListen listener;
    private String pressed;
    public allItems (String btn){
@@ -40,27 +37,41 @@ public class allItems extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String item= et.getText().toString();
                         String price= prc.getText().toString();
+                        String quant= qntt.getText().toString();
+
+                        int quan=0;
+
+                        if(quant.length()>0){
+                        quan= Integer.parseInt(quant);
+                        }
+
+
                         if(price.length()==0){
                             price="0.00";
                         }
                         double pr= Double.parseDouble(price);
+                        String detPrice = String.format("%.2f",pr);
+                        if(quan != 1){
+                            detPrice = quan+"x "+ detPrice;
+                        }
                         double tax= 0;
                         double taxable=0.0;
                         double nontax=0.0;
-                        double total=pr;
+
+                        double total=quan*pr;
                         //calculating tax value
 
                         if (pressed.equals("tax")||pressed.equals("beer")||pressed.equals("cigg"))
-                        {
-                            tax= 0.0825 * pr;
+                        {   taxable=total;
+                            tax= 0.0825 * total;
                             total +=tax;
-                            taxable=pr;
+                            detPrice =detPrice+" T";
                         }
                         else {
-                            nontax=pr;
+                            nontax=total;
                         }
 
-                        listener.applyTexts(item,price,tax,total,taxable,nontax);
+                        listener.applyTexts(item,detPrice,tax,total,taxable,nontax);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -68,7 +79,8 @@ public class allItems extends AppCompatDialogFragment {
                     }
                 });
 
-        prc= (EditText) view.findViewById(R.id.editTextTextPersonName);
+        prc= (EditText) view.findViewById(R.id.refp11);
+        qntt= (EditText) view.findViewById(R.id.quant);
         et=(EditText) view.findViewById(R.id.editTextTextPersonName2);
 
         return dialog.create();

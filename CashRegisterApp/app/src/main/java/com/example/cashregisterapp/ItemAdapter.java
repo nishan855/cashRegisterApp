@@ -33,9 +33,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
     public void onBindViewHolder(ViewHolder holder, int position) {
         final OrderItems myListData = lst.get(position);
         holder.textViewItem.setText(lst.get(position).getItemName());
-        holder.textViewQnty.setText(lst.get(position).getItemprice());
         holder.textViewPrice.setText(lst.get(position).getItemprice());
-        holder.textViewTax.setText(String.format("%.2f",lst.get(position).getTax()));
         holder.textViewTotal.setText(String.format("%.2f",lst.get(position).getTotal()));
 
     }
@@ -57,9 +55,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
         public ViewHolder(View itemView) {
             super(itemView);
             this.textViewItem = (TextView) itemView.findViewById(R.id.textView33);
-            this.textViewPrice = (TextView) itemView.findViewById(R.id.textView44);
-            this.textViewQnty = (TextView) itemView.findViewById(R.id.textView55);
-            this.textViewTax = (TextView) itemView.findViewById(R.id.textView66);
+            this.textViewPrice = (TextView) itemView.findViewById(R.id.textView66);
             this.textViewTotal = (TextView) itemView.findViewById(R.id.textView77);
 
         }
