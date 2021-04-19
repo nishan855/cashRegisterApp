@@ -57,7 +57,7 @@ public class CloseShift extends AppCompatDialogFragment {
                 .setView(view)
                 .setPositiveButton("Close Shift", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                     if(MainActivity.items.isEmpty()){
+                     if(A.items.isEmpty()){
                          CashHandler.total_nontaxable=0.0;
                          CashHandler.total_tax=0.0;
                          CashHandler.total_taxable=0.0;
