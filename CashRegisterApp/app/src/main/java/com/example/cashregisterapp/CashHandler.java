@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
@@ -56,17 +55,17 @@ public class CashHandler extends AppCompatDialogFragment{
 
                 if (tc.length() >0){
                     double bill = Double.parseDouble(tc);
-                if (bill < total) {
-                    double val = total - bill;
-                    change.setText("Additional: "+ String.format("%.2f", val));
-                }
-                if (bill >= total) {
-                    double cnge = bill - total;
-                    change.setText("Change: $" + String.format("%.2f", cnge));
-                }
+                    if (bill < total) {
+                        double val = total - bill;
+                        change.setText("Additional: "+ String.format("%.2f", val));
+                    }
+                    if (bill >= total) {
+                        double cnge = bill - total;
+                        change.setText("Change: $" + String.format("%.2f", cnge));
+                    }
 
+                }
             }
-        }
             @Override
             public void afterTextChanged(Editable s) {
 

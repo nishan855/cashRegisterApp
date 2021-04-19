@@ -12,7 +12,7 @@
         <activity android:name=".Register"></activity>
         <activity android:name=".Login" />
         <activity android:name=".allItems" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Register">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
