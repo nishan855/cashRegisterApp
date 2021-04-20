@@ -63,7 +63,7 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(Login.this, "Login Successful ", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), A.class));
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {
 
                             Toast.makeText(Login.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -79,7 +79,7 @@ public class Login extends AppCompatActivity {
         newAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(getApplicationContext(),register.class));
             }
         });
     }

@@ -84,10 +84,10 @@ public class CashHandler extends AppCompatDialogFragment{
                         total_tax += getAllTax();
 
 
-                        A.items.clear();
-                        A.it.notifyDataSetChanged();
-                        A.totSale.setText("Total : $ 0.00");
-                        A.totTaxx.setText("Total: $0.00");
+                        MainActivity.items.clear();
+                        MainActivity.it.notifyDataSetChanged();
+                        MainActivity.totSale.setText("Total : $ 0.00");
+                        MainActivity.totTaxx.setText("Total: $0.00");
                     }
                 });
 
@@ -110,8 +110,8 @@ public class CashHandler extends AppCompatDialogFragment{
 
     public double getTaxableSale(){
         double taxSale=0;
-        for(int i = 0; i< A.items.size(); i++){
-            taxSale+= A.items.get(i).getTaxable();
+        for(int i = 0; i< MainActivity.items.size(); i++){
+            taxSale+= MainActivity.items.get(i).getTaxable();
         }
 
         return taxSale;
@@ -120,8 +120,8 @@ public class CashHandler extends AppCompatDialogFragment{
 
     public double getnonTaxSale(){
         double nontaxSale=0;
-        for(int i = 0; i< A.items.size(); i++){
-            nontaxSale+= A.items.get(i).getNontax();
+        for(int i = 0; i< MainActivity.items.size(); i++){
+            nontaxSale+= MainActivity.items.get(i).getNontax();
         }
 
         return nontaxSale;
@@ -130,8 +130,8 @@ public class CashHandler extends AppCompatDialogFragment{
 
     public double getAllTax(){
         double totTax=0;
-        for(int i = 0; i< A.items.size(); i++){
-            totTax += A.items.get(i).getTax();
+        for(int i = 0; i< MainActivity.items.size(); i++){
+            totTax += MainActivity.items.get(i).getTax();
         }
 
         return totTax;
