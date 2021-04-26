@@ -19,14 +19,14 @@
         <activity android:name=".refund"/>
         <activity android:name=".report"/>
         <activity android:name=".MainActivity"/>
-        <activity android:name=".Login">
+        <activity android:name=".Login"/>
+        <activity android:name=".register">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".register"/>
 
     </application>
 
