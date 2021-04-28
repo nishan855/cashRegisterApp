@@ -1,8 +1,5 @@
 package com.example.cashregisterapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,12 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -63,17 +57,18 @@ public class Login extends AppCompatActivity {
                     return;
                 }
 
-                //Authorise the firebase
-                fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth= FirebaseAuth.getInstance();
+
+                fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(Login.this,new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(Login.this, "Login Successful ", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),com.example.cashregisterapp.MainActivity.class));
-                        } else {
+                    if(task.isSuccessful()) {
+                           Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_SHORT).show();
+                           startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        }
 
-                            Toast.makeText(Login.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-
+                        else{
+                            Toast.makeText(Login.this,"Error !!! "+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -85,7 +80,8 @@ public class Login extends AppCompatActivity {
         newAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), com.example.cashregisterapp.register.class));
+
+                startActivity(new Intent(getApplicationContext(),register.class));
             }
         });
     }
