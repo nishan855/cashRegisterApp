@@ -172,6 +172,8 @@ public class MainActivity extends AppCompatActivity implements allItems.DialogLi
                 report rp = new report(ntxs, txs, txx, ttl_sale);
                 rp.show(getSupportFragmentManager(), "Insert");
             }
+            break;
+
 
             case R.id.close:
                 double tSale= CashHandler.total_nontaxable+CashHandler.total_tax+CashHandler.total_taxable;
@@ -181,10 +183,12 @@ public class MainActivity extends AppCompatActivity implements allItems.DialogLi
                 String ttl_sale = String.format("%.2f",tSale);
                 CloseShift cs= new CloseShift(ntxs,txs,txx,ttl_sale);
                 cs.show(getSupportFragmentManager(),"Insert");
+                break;
 
             case R.id.lut:
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(getApplication(),Login.class));
+                break;
 
         }
         return true;
