@@ -21,6 +21,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.text.BreakIterator;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -179,6 +181,10 @@ public class MainActivity extends AppCompatActivity implements allItems.DialogLi
                 String ttl_sale = String.format("%.2f",tSale);
                 CloseShift cs= new CloseShift(ntxs,txs,txx,ttl_sale);
                 cs.show(getSupportFragmentManager(),"Insert");
+
+            case R.id.lut:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getApplication(),Login.class));
 
         }
         return true;
