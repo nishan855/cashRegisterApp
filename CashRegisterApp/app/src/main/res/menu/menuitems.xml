@@ -4,5 +4,7 @@
         android:id="@+id/report1"></item>
     <item android:title="Close Shift"
         android:id="@+id/close"></item>
+    <item android:title="Log out"
+        android:id="@+id/lut"></item>
 
 </menu>
