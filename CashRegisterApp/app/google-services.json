@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "668314509800",
+    "project_id": "cash-register-app-30d19",
+    "storage_bucket": "cash-register-app-30d19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668314509800:android:ea70538746040f8327445d",
+        "android_client_info": {
+          "package_name": "com.example.cashregisterapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668314509800-glhu11us107j2d5ms4gnkpodfalo1630.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa9_caX3RZHiNJ2t6F6A36N6HCYnU0xvE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668314509800-glhu11us107j2d5ms4gnkpodfalo1630.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
